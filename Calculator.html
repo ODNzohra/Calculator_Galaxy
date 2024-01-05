@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="ustologo.png">
+<title>calculateator</title>
+
+    <style>
+        @font-face {
+            font-family: GenshinFont;
+            src: url('genshin.ttf');
+        }
+        font {
+            font-family: GenshinFont;
+        }
+        body {
+            background-image: url('bluredgalaxy.jpg');
+            background-size: cover;
+        }
+        legend {
+            font-family: GenshinFont;
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 10px rgb(145, 140, 245);
+            border-spacing: 50px;
+        }
+        @keyframes animatedglow {
+            0% { box-shadow: 0 0 30px rgb(255, 0, 128); }
+            50% { box-shadow: 0 0 30px rgb(46, 0, 249);}
+            100% { box-shadow: 0 0 30px rgb(255, 0, 251); }
+        }
+
+        fieldset {
+            background-color: #16005fb5;
+            border: none;
+            border-radius: 30px;
+            border-width: 10px;
+            box-shadow: 2px 5px 10px;
+            animation: animatedglow 3.5s infinite;
+        }
+        input[type="text"] {
+            color: rgb(99, 72, 33);
+            background-color: rgb(240, 235, 226);
+            width: 160px;
+            font-family: GenshinFont;
+            border: none;
+            border-radius: 20px;
+            margin: 10px;
+            padding: 5px;
+            box-shadow: 0 0 10px rgb(147, 125, 247);
+        }
+        input[type="button"] {
+            color: rgb(219, 4, 133);
+            background-color: rgb(255, 255, 255);
+            width: 50px;
+            font-family: GenshinFont;
+            border: none;
+            border-radius: 20px;
+            margin: 5px;
+            padding: 5px;
+            box-shadow: 0 0 10px rgb(206, 125, 247);
+        }
+        input[type="button"]:hover {
+            background: linear-gradient(45deg, #0400ff, #00e1ff);
+            color: #ffffff;
+            cursor:pointer
+        }
+    </style>
+    <script language="javascript">
+        var opr,a,b,n,mr,ms,point=1;
+        var Click=false;
+        
+        function enter(g)
+        {	
+            if(Click)
+            {
+                Click=false;
+                document.form1.input1.value="";
+            }
+            document.form1.input1.value +=g;
+        }
+        
+        function ArithmeticOperation(ope)
+        {
+            a=parseFloat(document.form1.input1.value);
+            opr=ope;
+            document.form1.input1.value="";
+            Click=true;
+        }
+            
+        function calculate()
+        {
+            if (opr == 'pw')
+            {
+                document.form1.input1.value = Math.pow(a,parseFloat(document.form1.input1.value));
+            }
+            if (opr != 'pw')
+            {
+            document.form1.input1.value = eval("a" +opr+ parseFloat(document.form1.input1.value));
+            Click=false;
+            }
+                
+        }
+        function MathematicalFunction(n)
+        {
+            a=parseFloat(document.form1.input1.value);
+        
+            switch (n)
+            { 
+                case 1:document.form1.input1.value = Math.sqrt(a); break;
+                case 2:document.form1.input1.value = Math.abs(a); break;
+                case 3:document.form1.input1.value = Math.PI; break;
+                case 4:document.form1.input1.value = Math.sin(a); break;
+                case 5:document.form1.input1.value = Math.cos(a); break;
+                case 6:document.form1.input1.value = Math.tan(a); break;
+                case 7:document.form1.input1.value = Math.log(a); break;
+                case 8:document.form1.input1.value = Math.exp(a); break;
+                case 9:document.form1.input1.value = Math.LN2; break;
+                case 10:document.form1.input1.value = Math.LN10; break;
+                case 11:document.form1.input1.value = Math.asin(a); break;
+                case 12:document.form1.input1.value = Math.acos(a); break;
+                case 13:document.form1.input1.value = Math.atan(a); break;
+            }
+        }
+        function Memory(n)
+        {
+            switch (n)
+            {
+                case 1: ms=parseFloat(document.form1.input1.value);document.form1.memory.value=ms; break;
+                case 2: document.form1.input1.value=ms; break;
+            }
+        }
+    </script>
+</head>
+<body>
+<center><br><legend>CALCULATOR</legend></center><br><br>
+<fieldset>
+    <form name="form1">
+        <table align="center" border="0" cellspacing="0" cellpadding="6" >
+            <tr>
+                <td>
+                    <input type="text" value="" name="input1"/>
+                </td>
+                <td>
+                    <input type="button" value=" C "  onClick="document.form1.input1.value=''"/>
+                    <font size="1" color="white"> MS <input type="text" size="20" readonly="readonly" value="" name="memory"/>			
+                </td>
+            </tr>
+                <tr>
+                    <td align="center" colspan="">
+                        <input type="button" value=" 1 " onClick="enter(1)"/>
+                        <input type="button" value=" 2 " onClick="enter(2)"/>
+                        <input type="button" value=" 3 " onClick="enter(3)"/>
+                    </td>
+                    <td align="center" colspan="">
+                        <input type="button" value=" * " onClick="ArithmeticOperation('*')"/>
+                        <input type="button" value=" / " onClick="ArithmeticOperation('/')"/>
+                        <input type="button" value=" + " onClick="ArithmeticOperation('+')"/>
+                        <input type="button" value=" - " onClick="ArithmeticOperation('-')"/>
+                        <input type="button" value=" MS " onClick="Memory(1)"/>
+                        <input type="button" value=" MR " onClick="Memory(2)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="">
+                        <input type="button" value=" 4 " onClick="enter(4)"/>
+                        <input type="button" value=" 5 " onClick="enter(5)"/>
+                        <input type="button" value=" 6 " onClick="enter(6)"/>
+                    </td>
+                    <td align="center">
+                        <input type="button" value=" mod " onClick="ArithmeticOperation('%')"/>
+                        <input type="button" value="  sqrt  " onClick="MathematicalFunction(1)"/>
+                        <input type="button" value="   Pi   " onClick="MathematicalFunction(3)"/>
+                        <input type="button" value="  Abs  " onClick="MathematicalFunction(2)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="">
+                        <input type="button" value=" 7 " onClick="enter(7)"/>
+                        <input type="button" value=" 8 " onClick="enter(8)"/>
+                        <input type="button" value=" 9 " onClick="enter(9)"/>
+                    </td>
+                    <td align="center">
+                        <input type="button" value="  x^y  " onClick="ArithmeticOperation('pw')"/>
+                        <input type="button" value="  Sin  " onClick="MathematicalFunction(4)"/>
+                        <input type="button" value="  Cos  " onClick="MathematicalFunction(5)"/>
+                        <input type="button" value="  Tg  " onClick="MathematicalFunction(6)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="">
+                        <input type="button" value=" 0 " onClick="enter(0)"/>
+                        <input type="button" value=" . " onClick="enter('.')"/>
+                        <input type="button" value="  =  " onClick="calculate()"/>
+                    </td>
+                    <td align="center">
+                        <input type="button" value="  Log  " onClick="MathematicalFunction(7)"/>
+                        <input type="button" value="  Exp  " onClick="MathematicalFunction(8)"/>
+                        <input type="button" value="  Ln2  " onClick="MathematicalFunction(9)"/>
+                        <input type="button" value=" Ln10 " onClick="MathematicalFunction(10)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td align="center">
+                        <input type="button" value=" Asin " onClick="MathematicalFunction(11)"/>
+                        <input type="button" value=" Acos " onClick="MathematicalFunction(12)"/>
+                        <input type="button" value=" Atan " onClick="MathematicalFunction(13)"/>
+                        <input type="button" value=" Ln10 " onClick="MathematicalFunction(10)"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</body>
+</html>
